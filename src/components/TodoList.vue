@@ -7,18 +7,25 @@ const filter = ref("");
 const filteredList = computed(() => {
     let result = [];
     for (let i = 0; i < list.value.length; i++) {
-        if (list.value[i].toLowerCase().includes(filter.value.toLowerCase())) {
+        if (list.value[i].name.toLowerCase().includes(filter.value.toLowerCase())) {
             result.push(list.value[i]);
         }
     }
     return result;
 });
 function add() {
-    list.value.push(newItem.value);
+    list.value.push({
+        id: Date.now().toString(16),
+        name: newItem.value,
+    });
     newItem.value = "";
 }
-function remove(index) {
-    list.value.splice(index, 1);
+function remove(id) {
+    for (let i = 0; i < list.value.length; i++) {
+        if (list.value[i].id === id) {
+            list.value.splice(i, 1);
+        }
+    }
 }
 </script>
 
@@ -29,9 +36,9 @@ function remove(index) {
         <br /><br />
         <input type="text" placeholder="filter list" v-model="filter" />
         <ul>
-            <li v-for="(item, index) in filteredList" :key="item">
-                {{index}} - {{item}}
-                <button @click="remove(index)">x</button>
+            <li v-for="item in filteredList" :key="item.id">
+                {{item.name}}
+                <button @click="remove(item.id)">x</button>
             </li>
         </ul>
 
