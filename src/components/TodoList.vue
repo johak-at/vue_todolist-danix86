@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { computed } from "vue";
+import ToDo from './ToDo.vue';
 const list = ref([]);
 const newItem = ref("");
 const filter = ref("");
@@ -31,15 +32,13 @@ function remove(id) {
 
 <template>
     <div>
-        <h1>TodoList</h1>
+        <h1>ToDoList</h1>
         <input @keyup.enter="add" v-model="newItem" />
         <br /><br />
         <input type="text" placeholder="filter list" v-model="filter" />
         <ul>
-            <li v-for="item in filteredList" :key="item.id">
-                {{item.name}}
-                <button @click="remove(item.id)">x</button>
-            </li>
+            <ToDo v-for="item in filteredList" :name="item.name" :id="item.id" :key="item.id" @remove="remove(id)">
+            </ToDo>
         </ul>
 
 
