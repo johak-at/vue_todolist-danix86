@@ -1,9 +1,11 @@
 <script setup>
 const props = defineProps(["name", "id"]);
-const emit = defineEmits(["remove"]);
+const emits = defineEmits(["delete"]);
 </script>
 
 <template>
-    {{name}}
-    <button @click="emit('remove', 'id' )">x</button>
+  <li>
+    {{ name }}
+    <button @click="emits('delete', id)">x</button>
+  </li>
 </template>
