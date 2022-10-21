@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { computed } from "vue";
-import ToDo from './ToDo.vue';
+import ToDo from "./ToDo.vue";
 const list = ref([]);
 const newItem = ref("");
 const filter = ref("");
@@ -27,6 +27,10 @@ function remove(id) {
             list.value.splice(i, 1);
         }
     }
+}
+
+function dummy(param) {
+    console.log(param);
 }
 </script>
 
