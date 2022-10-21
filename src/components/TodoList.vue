@@ -37,7 +37,7 @@ function remove(id) {
         <br /><br />
         <input type="text" placeholder="filter list" v-model="filter" />
         <ul>
-            <ToDo v-for="item in filteredList" :name="item.name" :id="item.id" :key="item.id" @remove="remove(id)">
+            <ToDo v-for="item in filteredList" :name="item.name" :id="item.id" :key="item.id" @remove="remove">
             </ToDo>
         </ul>
 
